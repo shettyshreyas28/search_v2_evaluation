@@ -2,7 +2,7 @@
 
 Utilities to run evaluation on search v2 results
 
-### Wrapper around the openai_batch_api repo to allow for users to run evals on search results
+Wrapper around the openai_batch_api repo to allow for users to run evals on search results
 
 ## Steps
 * Clone the [openai_batch_pi](https://github.com/shettyshreyas28/openai_batch_api) repo 
