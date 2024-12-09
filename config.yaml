@@ -1,0 +1,22 @@
+input_file: search_results.csv
+output_file: search_results_evaluation.pkl #Save in pkl for json format consistency
+id_column: doubt_id
+content_column: search_query_and_result
+prompt: |
+  You are an expert in the Class 11 and Class 12 science curriculum in India. You are assisting in evaluating a doubt search results. Given a question text and a list of result candidates, mark each candidate as EXACT_MATCH, SIMILAR_MATCH, NO_MATCH. 
+  EXACT_MATCH : When the search question matches the candidate question. The options in the search question and candiate question can be different.
+  SIMILAR_MATCH : When the search question is testing a similar concept as the candidate question. Options can be different.
+  NO_MATCH : The result question is entirely different from the search question.
+  Respond in a JSON in the following format
+  {
+  'search_question' : search_question,
+  'evaluation' : [{'candidate' : candidate, 'candidate_evaluation' : evaluation, 'reason' : reason} for each candidate result]
+  }
+data_path: data
+batch_size: 50 #Set so that we can demonstrate with 2 batches in the sample_data.csv
+batch_submit_data: batch_submit_data.csv #Intermediate file to keep track of batch_id's after submitting to OpenAI Batch API
+model_params:
+  model: gpt-4o-mini
+  temperature: 0
+  response_format:
+    type: json_object
